@@ -16,11 +16,11 @@ then
 	exit 1
 fi
 
-old_ip=$(tail -1 ~leon4422/.ip_addr 2>/dev/null)
+old_ip=$(tail -1 ${HOME}/.ip_addr 2>/dev/null)
 
 
 if [ "$curr_ip" != "$old_ip" ]
 then
-	echo ${curr_ip} >> ~leon4422/.ip_addr
+	echo ${curr_ip} >> ${HOME}/.ip_addr
 	echo ${curr_ip} | mailx -s 'ip change' $2 
 fi
