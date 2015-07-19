@@ -1,1 +1,1 @@
-This repository will contain unorganized files
+This repository will contain various files and scripts
