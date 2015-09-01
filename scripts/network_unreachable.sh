@@ -6,6 +6,8 @@ ping 192.168.10.1 -c3 >/dev/null 2>&1
 #result of ping is non-zero aka network is unreachable
 if [ $? -ne 0 ]
 then
+	#bring down the network (requires root access)
+	ip link set wlan0 down
 	#restart the network (requires root access)
-	netctl restart wireless-wpa-config
+	netctl start wireless-wpa-config
 fi
