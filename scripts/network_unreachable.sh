@@ -8,6 +8,8 @@ if [ $? -ne 0 ]
 then
 	#bring down the network (requires root access)
 	ip link set wlan0 down
-	#restart the network (requires root access)
+	#stop the network (requires root access)
+	netctl stop wireless-wpa-config
+	#start the network (requires root access)
 	netctl start wireless-wpa-config
 fi
