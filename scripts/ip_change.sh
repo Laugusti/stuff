@@ -10,7 +10,7 @@ fi
 #Get current ip address
 curr_ip=$(curl -su $1 192.168.10.1/updateInfoForStatusPage.cgi | cut -d, -f2 | sed "s/\s//g" | egrep "^[0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3}[.][0-9]{1,3}$")
 
-if [ -z ${curr_ip} ]
+if [ -z ${curr_ip} ] || [ "192.168.100.10" = ${curr_ip} ]
 then
 	#Failed to get external ip address
 	exit 1
