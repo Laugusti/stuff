@@ -21,6 +21,6 @@ old_ip=$(tail -1 ${HOME}/.ip_addr 2>/dev/null)
 
 if [ "$curr_ip" != "$old_ip" ]
 then
-	echo ${curr_ip} >> ${HOME}/.ip_addr
 	echo ${curr_ip} | mailx -s "ip change" $2 
+	echo ${curr_ip} >> ${HOME}/.ip_addr
 fi
