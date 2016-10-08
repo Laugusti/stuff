@@ -1,0 +1,8 @@
+1. Create Repo
+     curl -u Laugusti -X POST -H "Content-Type: application/json" -d '{"name": "gopl", "description": "Examples and Solutions from The Go Programming Language"}' https://api.github.com/user/repos
+
+2. Create directory
+    mkdir gopl
+
+3. Connect it to github
+    git remote add gopl https://github.com/Laugusti/gopl
