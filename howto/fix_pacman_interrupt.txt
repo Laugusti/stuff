@@ -1,0 +1,17 @@
+1. boot live cd 
+2. plug in ethernet
+3. chroot to pi (see https://bbs.archlinux.org/viewtopic.php?id=82056)
+  a. mkdir /mnt/arch
+  b. mount /dev/mmcblkp02 /mnt/arch		#mount root partition
+  c. mount /dev/mmcblkp01 /mnt/arch/boot	#mount boot partition
+  d. mount -t proc proc /mnt/arch/proc		#mount system folders
+  e. mount -t sysfs sys /mnt/arch/sys
+  f. mount -o bind /dev /mnt/arch/dev
+  g. set up qemu-user-static (see https://gist.github.com/mikkeloscar/a85b08881c437795c1b9)
+    i. copy the qemu-arm-static binary to the chroot
+    ii. register the qemu-arm-static as an ARM interpreter in the kernel (using binfmt_misc kernel module)
+      echo ':arm:M::\x7fELF\x01\x01\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x00\x28\x00:\xff\xff\xff\xff\xff\xff\xff\x00\xff\xff\xff\xff\xff\xff\xff\xff\xfe\xff\xff\xff:/usr/bin/qemu-arm-static:' > /proc/sys/fs/binfmt_misc/register
+  h. chroot /mnt/arch /bin/bash
+4. re-installed from /var/cache/package/pkg/
+  a. identify empty shared libraries
+    find /usr -name "*.so*" -size 0 -ls
