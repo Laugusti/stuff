@@ -1,6 +1,6 @@
 #!/bin/sh
-if [ "`gsettings get org.cinnamon.desktop.peripherals.touchpad tap-to-click`" == "true" ]; then
-	gsettings set org.cinnamon.desktop.peripherals.touchpad tap-to-click false
+if [ "`xinput list-props "Synaptics TM3471-010" | awk '/libinput Tapping Enabled \(/ {print $5}'`" == "1" ]; then
+	xinput set-prop "Synaptics TM3471-010" "libinput Tapping Enabled" 0
 else
-	gsettings set org.cinnamon.desktop.peripherals.touchpad tap-to-click true
+	xinput set-prop "Synaptics TM3471-010" "libinput Tapping Enabled" 1
 fi
